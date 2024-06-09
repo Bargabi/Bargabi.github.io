@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .content {
+        position: relative;
+        height: 100px;
+        width: 200px;
+        margin: 10px auto;
+    }
+
+    .content textarea {
+        height: 100%;
+        width: 100%;
+        resize: none;
+    }
+
+    .content button {
+        position: absolute;
+        top: 100px;
+        left: 220px;
+        /* height: 20px;
+        width: 40px; */
+    }
+
+    .chatplace {
+        width: 800px;
+        height: auto;
+        margin: 20px auto;
+        background-color: #ccc;
+    }
+
+    .based {
+        padding: 5px;
+        margin: 2px auto;
+        justify-content: center;
+        text-indent: 2em;
+        height: auto;
+        width: auto;
+        background-color: pink;
+    }
+</style>
+
+<body>
+    <div class="content">
+        <textarea name="" id="" placeholder="输入内容"></textarea>
+        <button>submit</button>
+    </div>
+    <div class="chatplace"></div>
+</body>
+<script>
+    let sum = 1
+    let content = document.querySelector('.content')
+    let chatplace = document.querySelector('.chatplace')
+    console.log(content)
+    window.onload = function () {
+        document.onkeydown = function (event) {
+            event.preventDefault();
+            // console.log(event.keyCode)
+            let chats = content.children[0].value
+            if (event.keyCode === 13 && chats != '' && chats != null && chats != undefined) {
+                console.log(chats)
+                let tmp = document.createElement('div')
+                tmp.className = 'based'
+                tmp.innerText = sum + '. ' + chats
+                chatplace.insertBefore(tmp, chatplace.children[0])
+                content.children[0].value = ''
+                sum++
+            }
+
+        }
+    }
+    content.children[1].onclick = function () {
+        let chats = content.children[0].value
+        if (content.children[0].value != '' && content.children[0].value != null && content.children[0].value != undefined) {
+            let tmp = document.createElement('div')
+            tmp.className = 'based'
+            tmp.innerText = sum + '. ' + chats
+            chatplace.insertBefore(tmp, chatplace.children[0])
+            content.children[0].value = ''
+            sum++
+        }
+    }
+
+
+</script>
+
+</html>
